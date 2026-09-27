@@ -1,3 +1,6 @@
+# 固定專案名稱：/srv/litellm 透過外部 network vllm-serve_default 連到這裡，不能隨資料夾名稱改變
+name: vllm-serve
+
 services:
   vllm:
     image: ${VLLM_IMAGE}
@@ -11,7 +14,7 @@ services:
       HUGGING_FACE_HUB_TOKEN: ${HF_TOKEN}
       VLLM_API_KEY: ${VLLM_API_KEY}
     volumes:
-      - ./hf-cache:/root/.cache/huggingface
+      - ${HF_CACHE_DIR:-/srv/models/hf}:/root/.cache/huggingface
     deploy:
       resources:
         reservations:
@@ -56,7 +59,7 @@ services:
       HUGGING_FACE_HUB_TOKEN: ${HF_TOKEN}
       VLLM_API_KEY: ${VLLM_API_KEY}
     volumes:
-      - ./hf-cache:/root/.cache/huggingface
+      - ${HF_CACHE_DIR:-/srv/models/hf}:/root/.cache/huggingface
     deploy:
       resources:
         reservations:
