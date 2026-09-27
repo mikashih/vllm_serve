@@ -1,0 +1,5 @@
+.env
+*.log
+hf-cache/
+nginx/
+scripts/
